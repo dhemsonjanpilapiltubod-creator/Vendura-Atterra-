@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — dark, moody palette with a copper/bronze accent.
+   Adjust this @theme block to re-skin the whole site in one place.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Near-black backgrounds */
+  --color-ink-950: #0b0b0c;
+  --color-ink-900: #131315;
+  --color-ink-800: #1b1b1e;
+  --color-ink-700: #26262a;
+  --color-ink-600: #36363b; /* hairline borders */
+
+  /* Off-white text */
+  --color-paper: #f3efe7;
+  --color-paper-dim: #b9b4a9;
+  --color-paper-faint: #7c7a72;
+
+  /* Copper / bronze accent */
+  --color-accent-300: #e3c9a6;
+  --color-accent-400: #d2a87a;
+  --color-accent-500: #c08b55;
+  --color-accent-600: #a9743f;
+  --color-accent-700: #87572e;
+
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink-950);
+  color: var(--color-paper);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-accent-500);
+  color: var(--color-ink-950);
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-reveal animation (used by <Reveal />)
+--------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-bounce {
+    animation: none;
+  }
+}
